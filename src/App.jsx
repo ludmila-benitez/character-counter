@@ -7,6 +7,7 @@ function App() {
     const [excludeSpaces, setExcludeSpaces] = useState(false)
     const [limitCharacter, setLimitCharacter] = userState(false)
     const [limitValue, setLimitValue] = useState(300)
+    const [showAll, setShowAll] = useState(false)
 
     const characters = excludeSpaces ? text.replace(/\s/g, "").length : "text.length"
     const words = text.trim() === "" ? 0 : text.trim().split(/\s+/g).length
@@ -46,6 +47,8 @@ function App() {
     })
     const sortLetters = letters.sort((a,b) => b.amount - a.amount)
 
+    const visibleLetters = showAll ? sortLetters : sortLetters.slice(0,5)
+
     return (
         <main>
             <Header />
@@ -81,9 +84,10 @@ function App() {
             <p>Tiempo aprox de lectura: {readingTime} minuto/s</p>
             <section>
                 <h2>Cantidad de letras</h2>
+                <button onClick={()=>setShowAll(!showAll ? "Ver menos" : "Ver todos")}>{showAll}</button>
                 <article>
                     {
-                        letters.map(obj => 
+                        visibleLetters.map(obj => 
                             <div key= {obj.letter}>
                                 <span>{obj.letter.toUpperCase()}</span>
                                 <meter min="0" max="100" value={obj.porcentaje}></meter>
