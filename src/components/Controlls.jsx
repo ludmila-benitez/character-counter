@@ -1,4 +1,4 @@
-const controlls = (
+const Controlls = (
     excludeSpaces, 
     handleExcludeSpace, 
     limitCharacter, 
@@ -38,4 +38,4 @@ const controlls = (
     )
 }
 
-export{controlls}
+export{Controlls}

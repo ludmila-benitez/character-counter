@@ -1,3 +1,6 @@
+
+import { ProgressBar } from "./ProgressBar"
+
 const letterDensity = (sortLetters) => {
     return (
         <section>
@@ -6,19 +9,7 @@ const letterDensity = (sortLetters) => {
                 <ul>
                     {
                         sortLetters.slice(0, 5).map(letter => (
-                            <li key={letter.letter}>
-                                <span>
-                                    {letter.letter.toUpperCase()}
-                                </span>
-                                <meter
-                                min="0"
-                                max="100"
-                                value={letter.percentage}>
-                                </meter>
-                                <span>
-                                    {letter.amount}({letter.percentage.toFixed(1)}%)
-                                </span>
-                            </li>
+                            <ProgressBar letter={letter} />
                         ))
                     }
                 </ul>
@@ -31,24 +22,11 @@ const letterDensity = (sortLetters) => {
                 <ul>
                     {
                     sortLetters.slice(5, sortLetters.length).map(letter => (
-                            <li key={letter.letter}>
-                                <span>
-                                    {letter.letter.toUpperCase()}
-                                </span>
-                                <meter
-                                min="0"
-                                max="100"
-                                value={letter.percentage}>
-                                </meter>
-                                <span>
-                                    {letter.amount}({letter.percentage.toFixed(1)}%)
-                                </span>
-                            </li>)
-                    )
+                        <ProgressBar letter={letter} />
+                    ))
                     }
                 </ul>
             </details>
-
         </section>
     )
 }
